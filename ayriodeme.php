@@ -31,7 +31,7 @@ if ($ayriodeme_masa_id > 0) {
 }
 
 // Sağ tarafa aktarılan siparişler (oturumda tutulacak)
-session_start();
+
 if (!isset($_SESSION['ayri_odeme'][$ayriodeme_masa_id])) {
     $_SESSION['ayri_odeme'][$ayriodeme_masa_id] = [];
 }
@@ -56,7 +56,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ayriodeme_saga_aktar'
             $_SESSION['ayri_odeme'][$ayriodeme_masa_id][$ayriodeme_siparis_id]++;
         }
     }
-    header("Location: ayriodeme.php?masa_id=" . $ayriodeme_masa_id);
+   // header("Location: ayriodeme.php?masa_id=" . $ayriodeme_masa_id);
+   echo '<script>window.location.href = "ayriodeme.php?masa_id=' . $ayriodeme_masa_id . '";</script>';
     exit;
 }
 
@@ -69,7 +70,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ayriodeme_sagdan_eksi
             unset($_SESSION['ayri_odeme'][$ayriodeme_masa_id][$ayriodeme_siparis_id]);
         }
     }
-    header("Location: ayriodeme.php?masa_id=" . $ayriodeme_masa_id);
+    //header("Location: ayriodeme.php?masa_id=" . $ayriodeme_masa_id);
+    echo '<script>window.location.href = "ayriodeme.php?masa_id=' . $ayriodeme_masa_id . '";</script>';
     exit;
 }
 
@@ -114,7 +116,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ayriodeme_tamamla']))
         // Sağ tarafı temizle
         $_SESSION['ayri_odeme'][$ayriodeme_masa_id] = [];
     }
-    header("Location: ayriodeme.php?masa_id=" . $ayriodeme_masa_id . "&odeme=ok");
+    //header("Location: ayriodeme.php?masa_id=" . $ayriodeme_masa_id . "&odeme=ok");
+    echo '<script>window.location.href = "ayriodeme.php?masa_id=' . $ayriodeme_masa_id . '&odeme=ok";</script>';
     exit;
 }
 
